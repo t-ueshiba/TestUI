@@ -16,7 +16,7 @@ public class SwitchSceneButton : MonoBehaviour
         
     }
 
-    public void OnClickButton()
+    public void OnClick()
     {
         Debug.Log("*** button clicked");
         //var scene_name = text + "Scene";
