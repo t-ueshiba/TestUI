@@ -1,38 +1,39 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 using TMPro;
 
-public class UIManager : MonoBehaviour
+public class UIManager : SingletonMonoBehaviour<UIManager>
 {
-    private static List<string> _scene_names = new List<string>() { "Kitting", "Assembly" };
-    private static string _current_scene_name = null;
+    private List<string> _scene_names = new List<string>() { "Kitting", "Assembly" };
+    private string _current_scene_name = null;
 
-    void Awake()
+    protected override void Awake()
     {
         foreach (var scene_name in _scene_names)
             if (!SceneManager.GetSceneByName(scene_name).IsValid())
             {
                 SceneManager.LoadScene(scene_name, LoadSceneMode.Additive);
                 Debug.Log("*** " + scene_name + " loaded");
+
             }
     }
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         foreach (var scene_name in _scene_names)
             SetSceneVisibility(scene_name, scene_name == _current_scene_name);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetMessage(string scene_name, string message)
     {
-        
+        var msg = transform.Find(scene_name + "Message").GetComponent<TMP_Text>();
+        msg.text = message;
+        Debug.Log("*** name=" + msg.name);
     }
 
-    public static void SwitchScene(string scene_name)
+    public void SwitchScene(string scene_name)
     {
         if (!_scene_names.Contains(scene_name))
         {
@@ -50,24 +51,10 @@ public class UIManager : MonoBehaviour
         SetSceneVisibility(_current_scene_name, true);
     }
 
-    private static void SetSceneVisibility(string scene_name, bool enable)
+    private void SetSceneVisibility(string scene_name, bool enable)
     {
         var root_objects = SceneManager.GetSceneByName(scene_name).GetRootGameObjects();
         foreach (var root_object in root_objects)
             root_object.SetActive(enable);
-    }
-
-    public void SetMessage(string scene_name, string message)
-    {
-        var text = transform.parent.Find(scene_name + "Message").GetComponent<TMP_Text>();
-        text.text = message;
-        Debug.Log("*** name=" + text.name);
-    }
-
-    public void OnClick(string scene_name)
-    {
-        Debug.Log("*** Switch to " + scene_name);
-        SwitchScene(scene_name);
-        SetMessage(scene_name, "Hello");
     }
 }
