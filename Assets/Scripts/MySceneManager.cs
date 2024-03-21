@@ -4,8 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class MySceneManager : MonoBehaviour
 {
-    private static List<string> _scene_names = new List<string> {"PickingScene", "AssemblyScene"};
-    private static string _current_scene_name = "PickingScene";
+    private static List<string> _scene_names = new List<string> {"KittingScene", "AssemblyScene"};
+    private static string _current_scene_name = "KittingScene";
 
     void Awake()
     {
@@ -30,7 +30,7 @@ public class MySceneManager : MonoBehaviour
         
     }
 
-    public void SwitchScene(string scene_name)
+    public static void SwitchScene(string scene_name)
     {
         if (!_scene_names.Contains(scene_name))
         {
@@ -48,7 +48,7 @@ public class MySceneManager : MonoBehaviour
         SetSceneVisibility(_current_scene_name, true);
     }
 
-    private void SetSceneVisibility(string scene_name, bool enable)
+    private static void SetSceneVisibility(string scene_name, bool enable)
     {
         var root_objects = SceneManager.GetSceneByName(scene_name).GetRootGameObjects();
         foreach (var root_object in root_objects)
