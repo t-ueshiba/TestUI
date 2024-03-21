@@ -6,13 +6,13 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/ManagerScene.unity
+    path: Assets/Scenes/Manager.unity
     guid: 0bf37de08d9754a8f8a3c2ff08709c82
   - enabled: 1
-    path: Assets/Scenes/PickingScene.unity
+    path: Assets/Scenes/Kitting.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/Scenes/AssemblyScene.unity
+    path: Assets/Scenes/Assembly.unity
     guid: 39e4453f3ad7a436881ae91e850cdc67
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: e636e57b60d3446b78eaeef816928e3d, type: 2}

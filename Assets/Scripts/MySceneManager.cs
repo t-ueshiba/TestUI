@@ -1,11 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MySceneManager : MonoBehaviour
 {
-    private static List<string> _scene_names = new List<string> {"KittingScene", "AssemblyScene"};
-    private static string _current_scene_name = "KittingScene";
+    private static List<string> _scene_names = new List<string>() { "Kitting", "Assembly" };
+    private static string _current_scene_name = null;
 
     void Awake()
     {
@@ -20,7 +21,7 @@ public class MySceneManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        foreach (var scene_name in _scene_names)
+            foreach (var scene_name in _scene_names)
             SetSceneVisibility(scene_name, scene_name == _current_scene_name);
     }
 
@@ -53,5 +54,18 @@ public class MySceneManager : MonoBehaviour
         var root_objects = SceneManager.GetSceneByName(scene_name).GetRootGameObjects();
         foreach (var root_object in root_objects)
             root_object.SetActive(enable);
+    }
+
+    public void SetMessage(string scene_name, string message)
+    {
+        var text = transform.parent.Find(scene_name + "Message");
+        Debug.Log("*** name=" + text.name);
+    }
+
+    public void OnClick(string scene_name)
+    {
+        Debug.Log("*** Switch to " + scene_name);
+        SwitchScene(scene_name);
+        SetMessage(scene_name, "Hello");
     }
 }
