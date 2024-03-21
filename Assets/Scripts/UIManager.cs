@@ -2,8 +2,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
-public class MySceneManager : MonoBehaviour
+public class UIManager : MonoBehaviour
 {
     private static List<string> _scene_names = new List<string>() { "Kitting", "Assembly" };
     private static string _current_scene_name = null;
@@ -58,7 +59,8 @@ public class MySceneManager : MonoBehaviour
 
     public void SetMessage(string scene_name, string message)
     {
-        var text = transform.parent.Find(scene_name + "Message");
+        var text = transform.parent.Find(scene_name + "Message").GetComponent<TMP_Text>();
+        text.text = message;
         Debug.Log("*** name=" + text.name);
     }
 
