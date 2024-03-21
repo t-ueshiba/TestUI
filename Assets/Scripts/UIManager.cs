@@ -22,7 +22,7 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-            foreach (var scene_name in _scene_names)
+        foreach (var scene_name in _scene_names)
             SetSceneVisibility(scene_name, scene_name == _current_scene_name);
     }
 
