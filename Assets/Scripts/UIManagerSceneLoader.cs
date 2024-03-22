@@ -18,7 +18,7 @@ public class UIManagerSceneLoader : MonoBehaviour
 
     private void Start()
     {
-        UIManager.Instance.GoToScene(gameObject.scene.name);
+        //UIManager.Instance.GoToScene(gameObject.scene.name);
     }
 }
 
