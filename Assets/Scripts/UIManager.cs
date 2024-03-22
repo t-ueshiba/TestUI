@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using TMPro;
 
 public class UIManager : SingletonMonoBehaviour<UIManager>
@@ -26,11 +27,16 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
             SetSceneVisibility(scene_name, scene_name == _current_scene_name);
     }
 
-    public void SetMessage(string scene_name, string message)
+    public void SetMessage(string scene_name, string message="")
     {
-        var msg = transform.Find(scene_name + "Message").GetComponent<TMP_Text>();
-        msg.text = message;
-        Debug.Log("*** name=" + msg.name);
+        var text_name = scene_name + "Message";
+        foreach (var text in GetComponentsInChildren<TMP_Text>())
+            if (text.name == text_name)
+            {
+                text.text = message;
+                return;
+            }
+        Debug.Log("*** No component found[" + text_name + "]");
     }
 
     public void GoToScene(string scene_name)
@@ -46,15 +52,19 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
 
         if (_current_scene_name != null)
             SetSceneVisibility(_current_scene_name, false);
-        
+
+        SetSceneVisibility(scene_name, true);
+
+        foreach (var button in GetComponentsInChildren<Button>())
+            button.enabled = (button.name != scene_name);
+
         _current_scene_name = scene_name;
-        SetSceneVisibility(_current_scene_name, true);
     }
 
-    private void SetSceneVisibility(string scene_name, bool enable)
+    private void SetSceneVisibility(string scene_name, bool visibility)
     {
         var root_objects = SceneManager.GetSceneByName(scene_name).GetRootGameObjects();
         foreach (var root_object in root_objects)
-            root_object.SetActive(enable);
+            root_object.SetActive(visibility);
     }
 }
