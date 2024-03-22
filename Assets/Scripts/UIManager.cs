@@ -33,7 +33,7 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
         Debug.Log("*** name=" + msg.name);
     }
 
-    public void SwitchScene(string scene_name)
+    public void GoToScene(string scene_name)
     {
         if (!_scene_names.Contains(scene_name))
         {
