@@ -16,7 +16,6 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
             {
                 SceneManager.LoadScene(scene_name, LoadSceneMode.Additive);
                 Debug.Log("*** " + scene_name + " loaded");
-
             }
     }
 
