@@ -13,7 +13,6 @@ public class KeepTransformOnGrab : MonoBehaviour
         interactable.selectExited.AddListener(OnSelectExited);
     }
 
-    // コンポーネントが無効化された時に実行
     private void OnDisable()
     {
         var interactable = GetComponent<XRGrabInteractable>();
@@ -22,6 +21,17 @@ public class KeepTransformOnGrab : MonoBehaviour
 
         interactable.selectEntered.RemoveListener(OnSelectEntered);
         interactable.selectExited.RemoveListener(OnSelectExited);
+    }
+    
+    private void Update()
+    {
+        var interactable = GetComponent<XRGrabInteractable>();
+        if (interactable == null || !interactable.isSelected)
+            return;
+
+        var interactor = interactable.GetOldestInteractorSelecting();
+
+        Debug.Log("*** Dragged");
     }
 
     private void OnSelectEntered(SelectEnterEventArgs args)
@@ -36,6 +46,5 @@ public class KeepTransformOnGrab : MonoBehaviour
     private void OnSelectExited(SelectExitEventArgs args)
     {
         Debug.Log("*** OnSelectExited()");
-
     }
 }
