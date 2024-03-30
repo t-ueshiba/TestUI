@@ -52,6 +52,8 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
 
         if (_current_scene_name != null)
             SetSceneVisibility(_current_scene_name, false);
+        //else
+        //    GameObject.FindGameObjectWithTag("MainCamera").SetActive(false);       
 
         SetSceneVisibility(scene_name, true);
 
