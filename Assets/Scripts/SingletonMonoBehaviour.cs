@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-// Base class of singleton MonoBehaviour
+//シングルトンなMonoBehaviourの基底クラス
 public class SingletonMonoBehaviour<T> : MonoBehaviour where T : MonoBehaviour
 {
     private static T _instance;
@@ -15,7 +15,7 @@ public class SingletonMonoBehaviour<T> : MonoBehaviour where T : MonoBehaviour
             _instance = (T)FindObjectOfType(typeof(T));
  
             if (_instance == null)
-                Debug.LogError(typeof(T) + " is not found");
+                Debug.LogError(typeof(T) + "is nothing");
 
             return _instance;
         }
@@ -33,7 +33,7 @@ public class SingletonMonoBehaviour<T> : MonoBehaviour where T : MonoBehaviour
     {
         if (_instance != null && _instance != this)
         {
-            Debug.LogError("Multiple " + typeof(T) + "(s) have been created", this);
+            Debug.LogError(typeof(T) + " is multiple created", this);
             return;
         }
  

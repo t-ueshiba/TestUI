@@ -6,7 +6,7 @@ using TMPro;
 
 public class UIManager : SingletonMonoBehaviour<UIManager>
 {
-    private List<string> _scene_names = new List<string>() { "Kitting", "Assembly" };
+    private List<string> _scene_names = new List<string>() { "Kitting", "Toyota1" };
     private string _current_scene_name = null;
 
     protected override void Awake()
