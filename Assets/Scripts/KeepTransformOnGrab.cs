@@ -4,10 +4,12 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class KeepTransformOnGrab : MonoBehaviour
 {
     private Vector3 _initial_position;
-    private Quaternion _initial_rotation;
-
+    
     private void OnEnable()
     {
+        var line_renderer = GetComponent<LineRenderer>();
+        line_renderer.positionCount = 0;
+
         var interactable = GetComponent<XRGrabInteractable>();
         if (interactable == null)
             return;
@@ -32,6 +34,15 @@ public class KeepTransformOnGrab : MonoBehaviour
         if (interactable == null || !interactable.isSelected)
             return;
 
+        var line_renderer = GetComponent<LineRenderer>();
+        var positions = new Vector3[] { _initial_position, transform.position };
+        line_renderer.positionCount = positions.Length;
+        line_renderer.widthMultiplier = 0.1f;
+        //line_renderer.material = new Material(Shader.Find("Sprites/Default"));
+        //line_renderer.startColor = Color.red;
+        //line_renderer.endColor = Color.red;
+        line_renderer.SetPositions(positions);
+        
         var interactor = interactable.GetOldestInteractorSelecting();
 
         Debug.Log("*** Dragged");
@@ -46,11 +57,13 @@ public class KeepTransformOnGrab : MonoBehaviour
         attachTransform.rotation = transform.rotation;
 
         _initial_position = transform.position;
-        _initial_rotation = transform.rotation;
     }
 
     private void OnSelectExited(SelectExitEventArgs args)
     {
+        var line_renderer = GetComponent<LineRenderer>();
+        line_renderer.positionCount = 0;
+
         Debug.Log("*** OnSelectExited()");
     }
 }
