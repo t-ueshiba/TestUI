@@ -3,6 +3,9 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class KeepTransformOnGrab : MonoBehaviour
 {
+    private Vector3 _initial_position;
+    private Quaternion _initial_rotation;
+
     private void OnEnable()
     {
         var interactable = GetComponent<XRGrabInteractable>();
@@ -41,6 +44,9 @@ public class KeepTransformOnGrab : MonoBehaviour
         var attachTransform = args.interactorObject.GetAttachTransform(args.interactableObject);
         attachTransform.position = transform.position;
         attachTransform.rotation = transform.rotation;
+
+        _initial_position = transform.position;
+        _initial_rotation = transform.rotation;
     }
 
     private void OnSelectExited(SelectExitEventArgs args)
