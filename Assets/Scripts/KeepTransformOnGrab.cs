@@ -52,9 +52,9 @@ public class KeepTransformOnGrab : MonoBehaviour
     {
         Debug.Log("*** OnSelectEntered()");
 
-        var attachTransform = args.interactorObject.GetAttachTransform(args.interactableObject);
-        attachTransform.position = transform.position;
-        attachTransform.rotation = transform.rotation;
+        //var attachTransform = args.interactorObject.GetAttachTransform(args.interactableObject);
+        //attachTransform.position = transform.position;
+        //attachTransform.rotation = transform.rotation;
 
         _initial_position = transform.position;
     }
