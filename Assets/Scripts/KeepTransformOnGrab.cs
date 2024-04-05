@@ -16,6 +16,8 @@ public class KeepTransformOnGrab : MonoBehaviour
 
         interactable.selectEntered.AddListener(OnSelectEntered);
         interactable.selectExited.AddListener(OnSelectExited);
+        interactable.activated.AddListener(OnActivated);
+        interactable.deactivated.AddListener(OnDeactivated);
     }
 
     private void OnDisable()
@@ -27,7 +29,21 @@ public class KeepTransformOnGrab : MonoBehaviour
         interactable.selectEntered.RemoveListener(OnSelectEntered);
         interactable.selectExited.RemoveListener(OnSelectExited);
     }
-    
+
+    private void OnActivated(ActivateEventArgs args)
+    {
+        Debug.Log("*** OnActivated()");
+
+        //PublishPointing(2); // RECAPTURE_RES(2): force ROS to recapture 3D point cloud
+    }
+
+    private void OnDeactivated(DeactivateEventArgs args)
+    {
+        Debug.Log("*** OnDeactivated()");
+
+        //PublishPointing(2); // RECAPTURE_RES(2): force ROS to recapture 3D point cloud
+    }
+
     private void Update()
     {
         var interactable = GetComponent<XRGrabInteractable>();
