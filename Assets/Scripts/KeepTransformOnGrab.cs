@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 public class KeepTransformOnGrab : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class KeepTransformOnGrab : MonoBehaviour
         var line_renderer = GetComponent<LineRenderer>();
         line_renderer.positionCount = 0;
 
-        var interactable = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
+        var interactable = GetComponent<XRGrabInteractable>();
         if (interactable == null)
             return;
 
@@ -22,7 +23,7 @@ public class KeepTransformOnGrab : MonoBehaviour
 
     private void OnDisable()
     {
-        var interactable = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
+        var interactable = GetComponent<XRGrabInteractable>();
         if (interactable == null)
             return;
 
@@ -46,7 +47,7 @@ public class KeepTransformOnGrab : MonoBehaviour
 
     private void Update()
     {
-        var interactable = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
+        var interactable = GetComponent<XRGrabInteractable>();
         if (interactable == null || !interactable.isSelected)
             return;
 
