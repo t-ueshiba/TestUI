@@ -10,7 +10,7 @@ public class KeepTransformOnGrab : MonoBehaviour
         var line_renderer = GetComponent<LineRenderer>();
         line_renderer.positionCount = 0;
 
-        var interactable = GetComponent<XRGrabInteractable>();
+        var interactable = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
         if (interactable == null)
             return;
 
@@ -22,7 +22,7 @@ public class KeepTransformOnGrab : MonoBehaviour
 
     private void OnDisable()
     {
-        var interactable = GetComponent<XRGrabInteractable>();
+        var interactable = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
         if (interactable == null)
             return;
 
@@ -46,7 +46,7 @@ public class KeepTransformOnGrab : MonoBehaviour
 
     private void Update()
     {
-        var interactable = GetComponent<XRGrabInteractable>();
+        var interactable = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
         if (interactable == null || !interactable.isSelected)
             return;
 
@@ -59,7 +59,7 @@ public class KeepTransformOnGrab : MonoBehaviour
         //line_renderer.endColor = Color.red;
         line_renderer.SetPositions(positions);
         
-        var interactor = interactable.GetOldestInteractorSelecting();
+        //var interactor = interactable.GetOldestInteractorSelecting();
 
         Debug.Log("*** Dragged");
     }
