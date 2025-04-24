@@ -15,5 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Toyota1.unity
     guid: 39e4453f3ad7a436881ae91e850cdc67
   m_configObjects:
+    com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: ec955a126db8a436ca4feb510dc7232e, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: e636e57b60d3446b78eaeef816928e3d, type: 2}
     com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 433a02f86c0274d78a7ae3e9b5001fbf, type: 2}
+  m_UseUCBPForAssetBundles: 0

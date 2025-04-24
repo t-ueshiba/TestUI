@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 public class KeepTransformOnGrab : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class KeepTransformOnGrab : MonoBehaviour
 
         interactable.selectEntered.AddListener(OnSelectEntered);
         interactable.selectExited.AddListener(OnSelectExited);
+        interactable.activated.AddListener(OnActivated);
+        interactable.deactivated.AddListener(OnDeactivated);
     }
 
     private void OnDisable()
@@ -27,7 +30,21 @@ public class KeepTransformOnGrab : MonoBehaviour
         interactable.selectEntered.RemoveListener(OnSelectEntered);
         interactable.selectExited.RemoveListener(OnSelectExited);
     }
-    
+
+    private void OnActivated(ActivateEventArgs args)
+    {
+        Debug.Log("*** OnActivated()");
+
+        //PublishPointing(2); // RECAPTURE_RES(2): force ROS to recapture 3D point cloud
+    }
+
+    private void OnDeactivated(DeactivateEventArgs args)
+    {
+        Debug.Log("*** OnDeactivated()");
+
+        //PublishPointing(2); // RECAPTURE_RES(2): force ROS to recapture 3D point cloud
+    }
+
     private void Update()
     {
         var interactable = GetComponent<XRGrabInteractable>();
@@ -43,7 +60,7 @@ public class KeepTransformOnGrab : MonoBehaviour
         //line_renderer.endColor = Color.red;
         line_renderer.SetPositions(positions);
         
-        var interactor = interactable.GetOldestInteractorSelecting();
+        //var interactor = interactable.GetOldestInteractorSelecting();
 
         Debug.Log("*** Dragged");
     }
@@ -52,9 +69,9 @@ public class KeepTransformOnGrab : MonoBehaviour
     {
         Debug.Log("*** OnSelectEntered()");
 
-        var attachTransform = args.interactorObject.GetAttachTransform(args.interactableObject);
-        attachTransform.position = transform.position;
-        attachTransform.rotation = transform.rotation;
+        //var attachTransform = args.interactorObject.GetAttachTransform(args.interactableObject);
+        //attachTransform.position = transform.position;
+        //attachTransform.rotation = transform.rotation;
 
         _initial_position = transform.position;
     }
